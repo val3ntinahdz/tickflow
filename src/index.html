@@ -4,13 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Webpack</title>
+    <title>Template - TODO MVC</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Comentario -->
-    <!-- Comentario -->
-    <!-- Comentario -->
-    <img src="assets/img/webpack-logo.png" alt="Webpack logo">
+    <section class="todoapp">
+        <header class="header">
+            <h1>Tasks</h1>
+            <input id="new-todo-input" class="new-todo" placeholder="¿Qué necesita ser hecho?" autofocus>
+        </header>
+        
+        <!-- This section should be hidden by default and shown when there are todos -->
+        <section class="main">
+            <input id="toggle-all" class="toggle-all" type="checkbox">
+            <label for="toggle-all">Mark all as complete</label>
+            <ul class="todo-list">
+                <!-- These are here just to show the structure of the list items -->
+                <!-- List items should get the class "editing" when editing and "completed" when marked as completed -->
+                <!-- <li class="completed" data-id="abc">
+                    <div class="view">
+                        <input class="toggle" type="checkbox" checked>
+                        <label>Probar JavaScript</label>
+                        <button class="destroy"></button>
+                    </div>
+                    <input class="edit" value="Create a TodoMVC template">
+                </li> -->
+                <!-- <li>
+                    <div class="view">
+                        <input class="toggle" type="checkbox">
+                        <label>Comprar un unicornio</label>
+                        <button class="destroy"></button>
+                    </div>
+                    <input class="edit" value="Rule the web">
+                </li> -->
+            </ul>
+        </section>
 
+        <!-- This footer should hidden by default and shown when there are todos -->
+        <footer class="footer">
+            <!-- This should be "0 items left" by default -->
+            <span class="todo-count"><strong id="pending-count">0</strong> pending(s)</span>
+            <!-- Remove this if you don't implement routing -->
+            <ul class="filters">
+                <li>
+                    <a class="filtro" class="selected" href="#/">All</a>
+                </li>
+                <li>
+                    <a class="filtro" href="#/active">Pending</a>
+                </li>
+                <li>
+                    <a class="filtro" href="#/completed">Completed</a>
+                </li>
+            </ul>
+            <!-- Hidden if no completed items are left ↓ -->
+            <button class="clear-completed">Delete completed</button>
+        </footer>
+    </section>
+
+
+    <footer class="info">
+        <p>Created by Valentina León</a></p>
+    </footer>
 </body>
 </html>

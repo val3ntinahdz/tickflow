@@ -9,10 +9,4 @@ export const saludar = ( nombre = 'sin nombre' ) => {
     h1.innerText = `Hola ${ nombre }`;
 
     document.body.append( h1 );
-
-    
-    // Img
-    // const img = document.createElement('img');
-    // img.src = webpacklogo;
-    // document.body.append( img );
 }
