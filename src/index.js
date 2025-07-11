@@ -6,7 +6,8 @@ import { createNewTodo } from "./js/componentes";
 import './styles.css';
 
 const task = new Todo("Learn Node.js");
-const todoList = new TodoList();
+
+export const todoList = new TodoList();
 todoList.newTodo(task);
 
 console.log(task);
