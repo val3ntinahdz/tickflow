@@ -1,12 +1,20 @@
-import '../css/componentes.css';
-// import webpacklogo from '../assets/img/webpack-logo.png';
+const todoListDiv = document.querySelector(".todo-list");
 
 
-export const saludar = ( nombre = 'sin nombre' ) => {
-    console.log('Creando etiqueta h1');
+export const createNewTodo  = (todo) => {
+    const htmlTodo = `
+        <li class="${(todo.completed) ? "completed" : ""} " data-id="${todo.id}">
+            <div class="view">
+                <input class="toggle" type="checkbox" ${(todo.completed) ? 'checked' : ''}>
+                <label>${todo.task}</label>
+                <button class="destroy"></button>
+            </div>
+        </li>`;
 
-    const h1 = document.createElement('h1');
-    h1.innerText = `Hola ${ nombre }`;
+    const div = document.createElement("div");
 
-    document.body.append( h1 );
+    div.innerHTML = htmlTodo;
+    todoListDiv.append(div.firstElementChild); // https://developer.mozilla.org/en-US/docs/Web/API/Element/firstElementChild
+    return div.firstElementChild;
+
 }
