@@ -1,3 +1,5 @@
+import { Todo } from "./todo.class";
+
 export class TodoList {
     constructor() {
         // this.todos = [];
@@ -43,5 +45,9 @@ export class TodoList {
         this.todos = ( localStorage.getItem("todo") ) 
                    ? JSON.parse(localStorage.getItem("todo")) 
                    : [];
+
+        // map uses a callback as an argument, but it becomes redundant, so we can just send the function without the argument
+        // so, the first arguments the map will send, will be received by our function 
+        this.todos = this.todos.map( Todo.fromJson );
     }
 }

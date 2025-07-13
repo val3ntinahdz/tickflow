@@ -9,3 +9,4 @@ export const todoList = new TodoList();
 
 // build the todo's stored in localStorage
 todoList.todos.forEach(createNewTodo); // this approach only functions when we have only 1 element
+console.log(todoList.todos);
