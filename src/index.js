@@ -5,12 +5,7 @@ import { Todo, TodoList } from "./classes";
 import { createNewTodo } from "./js/componentes";
 import './styles.css';
 
-const task = new Todo("Learn Node.js");
-
 export const todoList = new TodoList();
-todoList.newTodo(task);
 
-console.log(task);
-console.log(todoList);
-
-createNewTodo(task);
+// build the todo's stored in localStorage
+todoList.todos.forEach(createNewTodo); // this approach only functions when we have only 1 element
