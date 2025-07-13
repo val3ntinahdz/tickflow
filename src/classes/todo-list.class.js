@@ -9,9 +9,8 @@ export class TodoList {
     }
 
     deleteTodo(id) {
-        if (this.id != id) {
-
-        }
+        this.todos = this.todos.filter(todo => todo.id != id);
+        console.log(this.todos);
     }
 
     markAsCompleted(id) {
@@ -27,9 +26,6 @@ export class TodoList {
     }
 
     deleteAllCompleted() {
-        if (!this.todos.completed) {
-            this.todos.filter(task => !task.completed)
-        }
-        
+        this.todos.filter(task => !task.completed)
     }
 }
