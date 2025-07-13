@@ -26,6 +26,6 @@ export class TodoList {
     }
 
     deleteAllCompleted() {
-        this.todos.filter(task => !task.completed)
+        this.todos = this.todos.filter(task => !task.completed)
     }
 }

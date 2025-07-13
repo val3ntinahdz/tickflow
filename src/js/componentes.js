@@ -3,6 +3,7 @@ import { Todo } from "../classes";
 
 const todoListDiv = document.querySelector(".todo-list");
 const txtInput = document.querySelector(".new-todo");
+const deleteCompleted = document.querySelector(".clear-completed");
 
 
 export const createNewTodo  = (todo) => {
@@ -52,6 +53,20 @@ todoListDiv.addEventListener("click", (event) => {
         todoElement.classList.toggle('completed');
     } else if (elementName.includes('button')) {
         todoList.deleteTodo(elementId);
-        todoListDiv.removeChild(todoElement);
+        todoListDiv.removeChild(todoElement); // https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+    }
+})
+
+
+deleteCompleted.addEventListener("click", () => {
+    todoList.deleteAllCompleted();
+
+    for(let i = todoListDiv.children.length - 1; i >= 0; i--) {
+        
+        const element = todoListDiv.children[i];
+
+        if (element.classList.contains("completed")) {
+            todoListDiv.removeChild(element);
+        }
     }
 })
