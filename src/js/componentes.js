@@ -1,9 +1,14 @@
-import { todoList } from "..";
-import { Todo } from "../classes";
+import { todoList } from "../classes/todo-list.instance";
+import { Todo } from "../classes"
+
 
 const todoListDiv = document.querySelector(".todo-list");
 const txtInput = document.querySelector(".new-todo");
 const deleteCompleted = document.querySelector(".clear-completed");
+const filtersDiv = document.querySelector(".filters");
+const filtersTag = document.querySelectorAll(".filtro");
+const pendingsCountSpan = document.getElementById("pending-count");
+console.log(pendingsCountSpan);
 
 
 export const createNewTodo  = (todo) => {
@@ -20,7 +25,11 @@ export const createNewTodo  = (todo) => {
 
     div.innerHTML = htmlTodo;
     todoListDiv.append(div.firstElementChild); // https://developer.mozilla.org/en-US/docs/Web/API/Element/firstElementChild
+
+    pendingsCountSpan.innerText = `${ todoList.todos.length }`;
     return div.firstElementChild;
+
+
 
 }
 
@@ -68,5 +77,37 @@ deleteCompleted.addEventListener("click", () => {
         if (element.classList.contains("completed")) {
             todoListDiv.removeChild(element);
         }
+
     }
+})
+// pendingsCountSpan.innerText = `${ todoList.todos.length }`;
+
+filtersDiv.addEventListener("click", (event) => {
+
+    const filter = event.target.text;
+    if (!filter) return; 
+
+    // remove "selected" class from anchor filters and add it dinamically when user clicks on 
+    filtersTag.forEach(filter => filter.classList.remove("selected"));
+    event.target.classList.add("selected");
+
+    for (const element of todoListDiv.children) {
+        element.classList.remove("hidden");
+        const completedTask = element.classList.contains("completed");
+
+        switch( filter ) {
+            case "Pending":
+                if( completedTask ) {
+                    element.classList.add("hidden");
+                }
+            break;
+
+            case "Completed":
+                if( !completedTask ) {
+                    element.classList.add("hidden");
+                }
+            break;
+        }
+    }
+    
 })

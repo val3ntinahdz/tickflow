@@ -328,11 +328,11 @@ body {
 }
 
 .filters li a:hover {
-	border-color: rgba(175, 47, 47, 0.1);
+	border-color: rgb(255, 255, 255);
 }
 
 .filters li a.selected {
-	border-color: rgba(175, 47, 47, 0.2);
+	border-color: rgb(255, 255, 255);
 }
 
 .clear-completed,

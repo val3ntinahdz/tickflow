@@ -42,12 +42,15 @@ export class TodoList {
 
     loadLocalStorage() {
         // turn the received string to an object
-        this.todos = ( localStorage.getItem("todo") ) 
-                   ? JSON.parse(localStorage.getItem("todo")) 
-                   : [];
+        const data = localStorage.getItem("todo");
 
-        // map uses a callback as an argument, but it becomes redundant, so we can just send the function without the argument
-        // so, the first arguments the map will send, will be received by our function 
-        this.todos = this.todos.map( Todo.fromJson );
+        this.todos = data
+                   ? JSON.parse(data) 
+                   .filter(todo => todo != null && typeof todo === "object") // dont parse nullish data or any other type than object
+                   
+                   // map uses a callback as an argument, but it becomes redundant, so we can just send the function without the argument
+                   // so, the first arguments the map will send, will be received by our function 
+                   .map(Todo.fromJson)
+                   : [];
     }
 }
