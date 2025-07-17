@@ -19,15 +19,26 @@ export class TodoList {
 
     markAsCompleted(id) {
         for (const todo of this.todos) {
-            console.log(id, todo.id)
+            // console.log(id, todo.id)
 
             if (todo.id === id) {
                 todo.completed = !todo.completed;
-                this.saveLocalStorage();
+                this.saveLocalStorage(); // save the marked task in LocalStorage
+
                 break;
             }
         }
+    }
 
+    countPendingTasks() {
+        const pendingsFilter = this.todos.filter(todo => !todo.completed);
+        // console.log("pending tasks length: ", pendingsFilter.length);
+        return pendingsFilter.length;
+    }
+
+    countCompletedTasks() {
+        const completedFilter =  this.todos.filter(todo => todo.completed)
+        return completedFilter.length; 
     }
 
     deleteAllCompleted() {
@@ -46,7 +57,7 @@ export class TodoList {
 
         this.todos = data
                    ? JSON.parse(data) 
-                   .filter(todo => todo != null && typeof todo === "object") // dont parse nullish data or any other type than object
+                   .filter(todo => todo != null) // dont parse nullish data or any other type than object
                    
                    // map uses a callback as an argument, but it becomes redundant, so we can just send the function without the argument
                    // so, the first arguments the map will send, will be received by our function 

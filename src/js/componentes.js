@@ -8,15 +8,13 @@ const deleteCompleted = document.querySelector(".clear-completed");
 const filtersDiv = document.querySelector(".filters");
 const filtersTag = document.querySelectorAll(".filtro");
 const pendingsCountSpan = document.getElementById("pending-count");
-console.log(pendingsCountSpan);
-
 
 export const createNewTodo  = (todo) => {
     const htmlTodo = `
-        <li class="${(todo.completed) ? "completed" : ""} " data-id="${todo.id}">
+        <li class="${ (todo.completed) ? "completed" : ""} " data-id="${todo.id}">
             <div class="view">
-                <input class="toggle" type="checkbox" ${(todo.completed) ? 'checked' : ''}>
-                <label>${todo.task}</label>
+                <input class="toggle" type="checkbox" ${ (todo.completed) ? 'checked' : '' }>
+                <label>${ todo.task }</label>
                 <button class="destroy"></button>
             </div>
         </li>`;
@@ -26,10 +24,9 @@ export const createNewTodo  = (todo) => {
     div.innerHTML = htmlTodo;
     todoListDiv.append(div.firstElementChild); // https://developer.mozilla.org/en-US/docs/Web/API/Element/firstElementChild
 
-    pendingsCountSpan.innerText = `${ todoList.todos.length }`;
+    pendingsCountSpan.innerText = todoList.countPendingTasks();
+    // pendingsCountSpan.innerText = `${ todoList.todos.length }`;
     return div.firstElementChild;
-
-
 
 }
 
@@ -60,9 +57,15 @@ todoListDiv.addEventListener("click", (event) => {
     if (elementName.includes('input')) {
         todoList.markAsCompleted(elementId);
         todoElement.classList.toggle('completed');
+
+        pendingsCountSpan.innerText = todoList.countPendingTasks();
+
     } else if (elementName.includes('button')) {
+
         todoList.deleteTodo(elementId);
         todoListDiv.removeChild(todoElement); // https://developer.mozilla.org/en-US/docs/Web/API/Node/removeChild
+
+        pendingsCountSpan.innerText = todoList.countPendingTasks();
     }
 })
 
@@ -80,7 +83,6 @@ deleteCompleted.addEventListener("click", () => {
 
     }
 })
-// pendingsCountSpan.innerText = `${ todoList.todos.length }`;
 
 filtersDiv.addEventListener("click", (event) => {
 
@@ -109,5 +111,12 @@ filtersDiv.addEventListener("click", (event) => {
             break;
         }
     }
+
+
     
 })
+
+
+const completedTasksHTML = document.querySelector(".completed-tasks");
+completedTasksHTML.innerText = `TASKS COMPLETADOS: ${ todoList.countCompletedTasks() }`;
+
