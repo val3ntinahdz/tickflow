@@ -55,7 +55,7 @@ todoListDiv.addEventListener("click", (event) => {
 
     // click on the check
     if (elementName.includes('input')) {
-        todoList.markAsCompleted(elementId);
+        todoList.markAsCompleted(Number(elementId)); // the id had to be converted to a Number
         todoElement.classList.toggle('completed');
 
         pendingsCountSpan.innerText = todoList.countPendingTasks();

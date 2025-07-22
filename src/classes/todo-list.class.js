@@ -23,6 +23,7 @@ export class TodoList {
 
             if (todo.id === id) {
                 todo.completed = !todo.completed;
+                console.log(`Tarea con id ${id} marcada como: ${todo.completed}`);
                 this.saveLocalStorage(); // save the marked task in LocalStorage
 
                 break;
